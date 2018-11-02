@@ -905,6 +905,10 @@ ExprResult Sema::DefaultVariadicArgumentPromotion(Expr *E, VariadicCallType CT,
     UnqualifiedId Name;
     Name.setIdentifier(PP.getIdentifierInfo("__builtin_trap"),
                        E->getBeginLoc());
+
+    if (TUScope == nullptr)
+      return ExprError();
+
     ExprResult TrapFn = ActOnIdExpression(TUScope, SS, TemplateKWLoc,
                                           Name, true, false);
     if (TrapFn.isInvalid())
