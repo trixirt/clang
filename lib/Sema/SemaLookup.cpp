@@ -948,7 +948,7 @@ CppNamespaceLookup(Sema &S, LookupResult &R, ASTContext &Context,
     if (LookupDirect(S, R, UUE.getNominatedNamespace()))
       Found = true;
 
-  R.resolveKind();
+  // Defer resolution to the caller.
 
   return Found;
 }
